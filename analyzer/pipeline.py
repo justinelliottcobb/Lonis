@@ -59,7 +59,7 @@ class Pipeline:
         for name in self.analyzer_names:
             analyzer = ANALYZER_REGISTRY[name]()
             output_key = OUTPUT_KEYS[name]
-            result[output_key] = analyzer.analyze(image)
+            result[output_key] = analyzer.analyze(image, context=result)
 
         elapsed = time.monotonic() - start
         result["metadata"]["duration_ms"] = round(elapsed * 1000)

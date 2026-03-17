@@ -15,12 +15,14 @@ class BaseAnalyzer(ABC):
         """Short identifier for this analyzer, e.g. 'color'."""
 
     @abstractmethod
-    def analyze(self, image: np.ndarray, mask: np.ndarray | None = None) -> dict:
+    def analyze(self, image: np.ndarray, mask: np.ndarray | None = None, context: dict | None = None) -> dict:
         """Run analysis on an image.
 
         Args:
-            image: RGB numpy array, uint8, shape (H, W, 3).
-            mask:  Optional boolean mask, shape (H, W). True = include pixel.
+            image:   RGB numpy array, uint8, shape (H, W, 3).
+            mask:    Optional boolean mask, shape (H, W). True = include pixel.
+            context: Optional dict of prior analyzer results from the pipeline.
+                     Enables inter-analyzer dependencies (e.g. edge using spatial hints).
 
         Returns:
             Dict of analysis results for this analyzer's domain.

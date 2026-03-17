@@ -15,7 +15,7 @@ class ColorAnalyzer(BaseAnalyzer):
     def name(self) -> str:
         return "color"
 
-    def analyze(self, image: np.ndarray, mask: np.ndarray | None = None) -> dict:
+    def analyze(self, image: np.ndarray, mask: np.ndarray | None = None, context: dict | None = None) -> dict:
         pixels = self._apply_mask(image, mask)
 
         # Subsample for performance if needed

@@ -19,7 +19,7 @@ class SpatialAnalyzer(BaseAnalyzer):
     def name(self) -> str:
         return "spatial"
 
-    def analyze(self, image: np.ndarray, mask: np.ndarray | None = None) -> dict:
+    def analyze(self, image: np.ndarray, mask: np.ndarray | None = None, context: dict | None = None) -> dict:
         h, w = image.shape[:2]
         total_area = h * w
 
@@ -33,6 +33,8 @@ class SpatialAnalyzer(BaseAnalyzer):
                     "id": i,
                     "bounds": {"x": r[0], "y": r[1], "w": r[2], "h": r[3]},
                     "dominant_color": r[4],
+                    "vertices": r[5],
+                    "vertex_count": len(r[5]),
                     "area_percentage": round(r[2] * r[3] / total_area * 100, 1),
                 }
                 for i, r in enumerate(regions)
@@ -75,7 +77,10 @@ class SpatialAnalyzer(BaseAnalyzer):
             region_pixels = image[y : y + ch, x : x + cw].reshape(-1, 3)
             avg = region_pixels.mean(axis=0).astype(int)
             hex_color = f"#{avg[0]:02x}{avg[1]:02x}{avg[2]:02x}"
-            regions.append((int(x), int(y), int(cw), int(ch), hex_color))
+            # Simplified contour vertices for shape geometry
+            approx = cv2.approxPolyDP(cnt, 0.02 * cv2.arcLength(cnt, True), True)
+            vertices = [[int(pt[0][0]), int(pt[0][1])] for pt in approx]
+            regions.append((int(x), int(y), int(cw), int(ch), hex_color, vertices))
 
         # Sort by position: top-to-bottom, left-to-right
         regions.sort(key=lambda r: (r[1], r[0]))

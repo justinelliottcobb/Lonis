@@ -11,7 +11,7 @@ class GradientAnalyzer(BaseAnalyzer):
     def name(self) -> str:
         return "gradient"
 
-    def analyze(self, image: np.ndarray, mask: np.ndarray | None = None) -> dict:
+    def analyze(self, image: np.ndarray, mask: np.ndarray | None = None, context: dict | None = None) -> dict:
         gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY).astype(np.float32)
 
         if mask is not None:
