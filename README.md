@@ -2,6 +2,12 @@
 
 Bitmap-to-structured-design-data analyzer. Named after Achewood's Lonis Edison, inventor of "Perceived Goods."
 
+> **Status:** This repository currently preserves the original Python Lonis implementation as a legacy prototype and demo. Active conceptual development has pivoted toward **Perceptron** as the structured perception model and toward a future **Lonis** Rust monorepo acting as a pluggable AI-oriented command-line harness.
+>
+> See:
+> - `docs/lonis-legacy-and-future-context.md`
+> - `docs/plans/README.md`
+
 ## What It Does
 
 Lonis extracts precise, measured design data from bitmap images and outputs it as structured JSON. It solves the problem of vision encoders *interpreting* rather than *measuring* — so you get exact hex codes, spatial relationships, and texture properties instead of guesses.
@@ -17,6 +23,37 @@ git clone git@github.com:justinelliottcobb/Lonis.git
 cd Lonis
 pip install -e .
 ```
+
+## Legacy Prototype
+
+This repository currently preserves the original Python Lonis analyzer as a working legacy prototype.
+
+Useful demo commands:
+
+```bash
+# Analyze a fixture image
+lonis analyze tests/fixtures/grid_layout.png
+
+# Run only selected analyzers
+lonis analyze tests/fixtures/grid_layout.png --only color,edge
+
+# Write output to a file
+lonis analyze tests/fixtures/grid_layout.png -o analysis.json
+
+# Run with verbose progress
+lonis analyze tests/fixtures/solid_red.png -v
+```
+
+To validate the legacy prototype locally:
+
+```bash
+python3 -m pytest -v
+```
+
+For archive and future-direction context, see:
+- `docs/lonis-legacy-and-future-context.md`
+- `docs/plans/2026-03-28-lonis-legacy-archive-plan.md`
+- `docs/plans/2026-03-12-perceptron-design.md`
 
 ## Usage
 
@@ -99,10 +136,23 @@ lonis analyze photo.png -v
 
 ## Roadmap
 
-- **Phase 1** (current): Pipeline of 5 pixel-level analyzers + CLI
+This README describes the **legacy Python Lonis** prototype as it exists today.
+
+Historical roadmap in earlier planning documents:
+- **Phase 1**: Pipeline of 5 pixel-level analyzers + CLI
 - **Phase 1b**: MCP server wrapper for use with Claude Code
 - **Phase 2**: Region-parallel analysis via SAM segmentation
 - **Phase 3**: Semantic analysis with pluggable providers (CLIP, Florence-2, Claude API)
+
+Current strategic direction:
+- preserve this Python implementation in a functioning archived state
+- develop **Perceptron** as the structured perceptual description model
+- evolve **Lonis** into a Rust monorepo centered on a pluggable AI-oriented command-line harness
+
+See:
+- `docs/plans/2026-03-12-perceptron-design.md`
+- `docs/plans/2026-03-28-lonis-legacy-archive-plan.md`
+- `docs/lonis-legacy-and-future-context.md`
 
 ## Tests
 
