@@ -7,12 +7,20 @@ This directory contains both the original Lonis planning documents and the newer
 ### If you want the current strategic picture
 Start here:
 
-1. `2026-03-28-lonis-provider-interface-spec-v0.md`
+1. `2026-03-28-lonis-external-provider-protocol-spec-v0.md`
+   - executable-provider protocol draft for external tool surfaces
+   - defines required provider subcommands, JSON wire format, stdout/stderr discipline, and exit semantics
+
+2. `2026-03-28-lonis-provider-interface-spec-v0.md`
    - first-pass provider/interface spec for how Lonis discovers, describes, and invokes tool surfaces
    - defines the canonical `lonis call <tool>` model and normalized envelopes
    - uses Perceptron and Figma as the key reference provider classes
 
-2. `2026-03-28-lonis-harness-design-draft.md`
+3. `2026-03-28-lonis-figma-provider-mapping-draft.md`
+   - maps Kai Jyozu concepts and operational lessons into the Lonis provider model
+   - identifies Figma as an early proving ground for verification, safety, and diagnostics design
+
+4. `2026-03-28-lonis-harness-design-draft.md`
    - first-pass design draft for the new **Lonis** as an AI-native tool harness
    - reflects the updated decision that Perceptron is a separate project consumed by Lonis
    - frames Figma integration as another external tool surface/provider
@@ -82,9 +90,11 @@ The project direction now separates into:
 If you are new to the repo, read in this order:
 
 1. `../lonis-legacy-and-future-context.md`
-2. `2026-03-28-lonis-provider-interface-spec-v0.md`
-3. `2026-03-28-lonis-harness-design-draft.md`
-4. `2026-03-12-perceptron-design.md`
-5. `2026-03-28-lonis-legacy-archive-plan.md`
-6. `2026-03-06-lonis-design.md`
-7. `2026-03-06-lonis-implementation.md`
+2. `2026-03-28-lonis-external-provider-protocol-spec-v0.md`
+3. `2026-03-28-lonis-provider-interface-spec-v0.md`
+4. `2026-03-28-lonis-figma-provider-mapping-draft.md`
+5. `2026-03-28-lonis-harness-design-draft.md`
+6. `2026-03-12-perceptron-design.md`
+7. `2026-03-28-lonis-legacy-archive-plan.md`
+8. `2026-03-06-lonis-design.md`
+9. `2026-03-06-lonis-implementation.md`
